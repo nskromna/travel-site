@@ -80,12 +80,9 @@
 
     &--equal-height-at-medium {
         @mixin atMedium {
-            display: flex;
-        }
-
-        & > div {
-            float: none;
-            display: flex;
+            & > div { 
+                display: flex;
+            }   
         }
     }
 
