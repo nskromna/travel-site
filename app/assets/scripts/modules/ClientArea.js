@@ -12,15 +12,22 @@ class ClientArea {
     events() {
         this.form.addEventListener('submit', e => {
             e.preventDefault();
-            this. sendRequest();
+            this.sendRequest();
         })
     }
 
     sendRequest() {
-        Axios.post().then().catch(() => {
+        Axios.post('https://resilient-douhua-f3ed29.netlify.app/.netlify/functions/secret-area', {
+            password: this.field.value
+        }).then(response => {
+            this.form.remove();
+            this.contentArea.innerHTML = response.data;
+        }).catch(() => {
             this.contentArea.innerHTML = `
             <p class=client-area__error>That secret phrase is not correct. Try again.</p>
-            `
+            `;
+            this.field.value = "";
+            this.field.focus();
         });
 
     }
